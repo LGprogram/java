@@ -20,10 +20,13 @@
     (function () {
         document.querySelector("#clean").onclick=function () {
             var parent =document.querySelector("#div");
-            var childrens = parent.getElementsByTagName("p");
-            for(var i=0;i<childrens.length;i++){
+            parent.innerHTML="";
+            /*var childrens = parent.querySelectorAll("p");//?
+            var length = childrens.length;
+            alert(length);
+            for(var i=0;i<length;i++){
                 parent.removeChild(childrens[i]);
-            }
+            }*/
         }
         document.querySelector("#btn").onclick = function () {
         var keyword = document.querySelector("#keyword").value;

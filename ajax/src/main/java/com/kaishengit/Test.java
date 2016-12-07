@@ -1,12 +1,15 @@
 package com.kaishengit;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.HttpEntityWrapper;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,9 +30,14 @@ public class Test {
         CloseableHttpClient httpClient= HttpClients.createDefault();
         HttpPost post = new HttpPost("http://localhost:8080/save");
         List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("userName","jack"));
-        params.add(new BasicNameValuePair("address","usa"));
-        post.setEntity(new UrlEncodedFormEntity(params));
+
+        params.add(new BasicNameValuePair("userName","杰克"));
+
+        params.add(new BasicNameValuePair("address","美国"));
+//默认编码格式为ISO8859-1，设置为UTF-8可以编译中文
+// UrlEncodedFormEntity 可以模拟传统的HTML表单传送POST请求中的参数
+      UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(formEntity);
 
 
         for(int i = 0;i < 5;i++) {
