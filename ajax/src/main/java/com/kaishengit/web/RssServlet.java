@@ -20,7 +20,7 @@ public class RssServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "http://www.pingwest.com/feed/";
+        String url = request.getParameter("url");//"http://www.pingwest.com/feed/";
         String result = HttpUtil.getInputString(url);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/xml;charset=UTF-8");
